@@ -1,0 +1,189 @@
+<html>
+<head>
+  <title>
+    Create Book
+  </title>
+</head>
+
+<header>
+  <h2 class="form_heading"> Create New Book </h2>
+</header>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body class="create_Book_Body">
+<mat-card class="">
+<form name="createBookForm" #createBookForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+  <mat-form-field class="form_Field">
+    <input type="text" pattern="[0-9]*" minlength="5" maxlength="5" min="10000" name="isbn" #isbn="ngModel"
+           [(ngModel)]="libraryItemModel.isbn" matInput placeholder="BOOK ISBN NO" required>
+    <div *ngIf="((isbn.touched) && !(isbn.valid))">
+      <div *ngIf="isbn.errors.required">
+        <mat-error>
+          This field is required/Invalid
+        </mat-error>
+      </div>
+
+      <div *ngIf="isbn.errors.minlength">
+        <mat-error>
+          ISBN should be of 5 characters
+        </mat-error>
+      </div>
+
+      <div *ngIf="isbn.errors.pattern">
+        <mat-error>
+          Invalid Pattern
+        </mat-error>
+      </div>
+    </div>
+  </mat-form-field>
+
+
+  <mat-form-field class="form_Field">
+    <input type="text" name="title" size="100" [(ngModel)]="libraryItemModel.title" pattern="[a-z, A-Z]*" matInput
+           placeholder="Book Name" required>
+    <mat-error>
+      This field is required/Invalid
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field class="form_Field">
+    <input [(ngModel)]="libraryItemModel.sector" name="sector" type="text" matInput placeholder="Sector" required>
+    <mat-error>
+      This field is required/Invalid
+    </mat-error>
+  </mat-form-field>
+
+
+  <div fxLayout="row" fxLayout.xs="column" class="date">
+    <div fxFlex="30%">
+      <mat-form-field class="day">
+    <select matNativeControl [(ngModel)]="libraryItemModel.publicationDate.day" name="day" placeholder="Hour" required>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="26">26</option>
+      <option value="27">27</option>
+      <option value="28">28</option>
+      <option value="29">29</option>
+      <option value="30">30</option>
+      <option value="31">31</option>
+    </select>
+    <mat-error>
+      This field is required/Invalid
+    </mat-error>
+  </mat-form-field>
+</div>
+
+
+    <div fxFlex="30%">
+      <mat-form-field class="day">
+        <select matNativeControl [(ngModel)]="libraryItemModel.publicationDate.month" name="month" placeholder="Month"
+                required>
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+        <mat-error>
+          This field is required/Invalid
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div fxFlex="30%">
+      <mat-form-field class="day">
+        <select matNativeControl [(ngModel)]="libraryItemModel.publicationDate.year" name="year" placeholder="Year"
+                required>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+          <option value="2014">2014</option>
+          <option value="2013">2013</option>
+          <option value="2012">2012</option>
+          <option value="2011">2011</option>
+          <option value="2010">2010</option>
+          <option value="2009">2009</option>
+        </select>
+        <mat-error>
+          This field is required/Invalid
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- 1. Should display author as per the above mentioned number -->
+  <mat-form-field class="form_Field">
+    <input type="text" name="authors" [(ngModel)]="libraryItemModel.author" matInput placeholder="Author" required>
+    <mat-error>
+      This field is required/Invalid
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field class="form_Field">
+    <input type="text" [(ngModel)]="libraryItemModel.publisher" name="publisher" matInput placeholder="Publisher"
+           required>
+    <mat-error>
+      This field is required/Invalid
+    </mat-error>
+  </mat-form-field>
+
+
+  <!-- 1. Avoid negative or 0 value -->
+  <mat-form-field class="form_Field">
+    <input type="number" pattern="[0-9]*" min="1" [(ngModel)]="libraryItemModel.no_Of_Pages" name="no_Of_Pages" matInput
+           placeholder="Number Of Pages" required>
+    <mat-error>
+      This field is required/Invalid
+    </mat-error>
+  </mat-form-field>
+
+  <div class="btns">
+    <button mat-raised-button color="warn" type="reset" style="margin: 10px" >RESET</button>
+    <button mat-raised-button color="primary" type="submit" style="margin: 10px" [disabled]="createBookForm.invalid" >ADD BOOK</button>
+  </div>
+
+</form>
+</mat-card>
+</body>
+</html>
+
+
+
+
+

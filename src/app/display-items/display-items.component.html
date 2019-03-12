@@ -1,0 +1,56 @@
+<html>
+<head>
+  <title>
+    Manage Library Items
+  </title>
+</head>
+
+<header>
+  <h2 class="form_heading"> Manage Library Items</h2>
+</header>
+
+<body class="displayItem">
+
+<mat-form-field class="form_Field">
+
+  <input  type="text" name="search" class="search_Field" ngModel  matInput placeholder="Library Item Title" [(ngModel)]="searchText">
+</mat-form-field>
+
+    <button mat-flat-button type="submit" style="margin-left: 20px" (click)="searchItem(searchText)" color="primary">Search</button>
+<mat-card class="">
+<table>
+  <tr>
+    <th> ISBN </th>
+    <th> Title </th>
+    <th> Type  </th>
+    <th> Action</th>
+    <th> Flag</th>
+  </tr>
+
+
+
+  <tr *ngFor="let item of libraryItems">
+
+    <td>{{item.isbn}}</td>
+    <td>{{item.title}}</td>
+    <td> {{item.type}}</td>
+    <td>
+     <button mat-flat-button type="submit" (click)="deleteItem(item.isbn)" color="warn">Delete</button>
+    </td>
+    <td *ngIf="item.available; else notAvailable" matTooltip="Item is ready to borrow"> Available </td>
+  </tr>
+    <ng-template #notAvailable>
+    <td matTooltip="Item is already borrowed">
+      Not Available
+    </td>
+  </ng-template>
+</table>
+  <button mat-flat-button type="submit" style="margin-left: 1080px; margin-top: 20px" color="primary">Generate Report</button>
+</mat-card>
+</body>
+</html>
+
+
+
+
+

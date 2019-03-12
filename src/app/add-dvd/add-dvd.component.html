@@ -1,0 +1,205 @@
+<html>
+<head>
+  <title>
+    Create DVD
+  </title>
+</head>
+
+<header>
+  <h2 class="form_heading"> Create New DVD </h2>
+</header>
+
+<body class="create_DVD_Body">
+<mat-card class="">
+<form name="create_DVD_Form" #createDVDForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+
+  <!--Add validation for isbn
+     1.Duplicate validation - add an array
+     2.Input characters up to 5 digits
+     3.Non negative value
+     4.Restrict value increment button -->
+
+
+  <!--DVD ISBN -->
+  <mat-form-field class="form_Field">
+    <input type="text" pattern="[0-9]*" minlength="5" maxlength="5" min="1000" inputmode="" name="DVDIsbn"
+           #DVDIsbn="ngModel" ngModel matInput [(ngModel)]="DVDModel.isbn" placeholder="DVD ISBN No" required>
+    <div *ngIf="((DVDIsbn.touched) && !(DVDIsbn.valid))">
+      <div *ngIf="DVDIsbn.errors.required">
+        <mat-error>
+          This field is required/Invalid
+        </mat-error>
+      </div>
+
+      <div *ngIf="DVDIsbn.errors.minlength">
+        <mat-error>
+          ISBN should be of 5 characters
+        </mat-error>
+      </div>
+
+      <div *ngIf="DVDIsbn.errors.pattern">
+        <mat-error>
+          Invalid Pattern
+        </mat-error>
+      </div>
+    </div>
+  </mat-form-field>
+
+
+  <!--DVD TITLE -->
+  <mat-form-field class="form_Field">
+    <input type="text" name="DVDTitle" ngModel matInput placeholder="DVD Title" [(ngModel)]="DVDModel.title" required>
+    <mat-error>
+      This field is required/Invalid
+    </mat-error>
+  </mat-form-field>
+
+
+  <!--DVD SECTOR -->
+  <mat-form-field class="form_Field">
+    <input ngModel name="sector" type="text" pattern="[a-z, A-Z]*" matInput placeholder="Sector"
+           [(ngModel)]="DVDModel.sector" required>
+    <mat-error>
+      This field is required/Invalid
+    </mat-error>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayout.xs="column" class="date">
+    <div fxFlex="30%">
+      <mat-form-field class="day">
+        <select matNativeControl matTooltip="Select day" [(ngModel)]="DVDModel.publicationDate.day" name="day" placeholder="Day" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+        </select>
+        <mat-error>
+          This field is required/Invalid
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div fxFlex="30%">
+      <mat-form-field class="day">
+        <select matNativeControl matTooltip="Select month" [(ngModel)]="DVDModel.publicationDate.month" name="month" placeholder="Month" required>
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+        <mat-error>
+          This field is required/Invalid
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="30%">
+      <mat-form-field class="day">
+        <select matNativeControl matTooltip="Select year" [(ngModel)]="DVDModel.publicationDate.year" name="year" placeholder="Year" required>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+          <option value="2014">2014</option>
+          <option value="2013">2013</option>
+          <option value="2012">2012</option>
+          <option value="2011">2011</option>
+          <option value="2010">2010</option>
+          <option value="2009">2009</option>
+        </select>
+        <mat-error>
+          This field is required/Invalid
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mat-form-field class="form_Field">
+    <input type="text" name="DVDSub-title" ngModel matInput placeholder="DVD Subtitles"
+           [(ngModel)]="DVDModel.availableSubtitles" required>
+    <mat-error>
+      This field is required/Invalid
+    </mat-error>
+  </mat-form-field>
+
+  <!-- add multiple actors-->
+  <mat-form-field class="form_Field">
+    <input type="text" name="actors" ngModel pattern="[a-z, A-Z]*" matInput placeholder="Actors"
+           [(ngModel)]="DVDModel.actor" required>
+    <mat-error>
+      This field is required/Invalid
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field class="form_Field">
+    <input type="text" name="producer" ngModel pattern="[a-z, A-Z]*" matInput placeholder="Producers"
+           [(ngModel)]="DVDModel.producer" required>
+    <mat-error>
+      This field is required/Invalid
+    </mat-error>
+  </mat-form-field>
+
+  <!-- acccpet mutiple values -->
+  <mat-form-field class="form_Field">
+    <input type="text" name="languages" ngModel pattern="[a-z, A-Z]*" matInput placeholder="Available Languages"
+           [(ngModel)]="DVDModel.availableLanguages" required>
+    <mat-error>
+      This field is required/Invalid
+    </mat-error>
+  </mat-form-field>
+
+  <div class="btns">
+    <button matTooltip="This will reset the added details" mat-raised-button color="warn" type="reset" style="margin: 10px" >RESET</button>
+
+    <button mat-raised-button color="primary" type="submit" style="margin: 10px" [disabled]="createDVDForm.invalid">ADD DVD</button>
+
+  </div>
+</form>
+</mat-card>
+</body>
+</html>
+
+
+
+
+

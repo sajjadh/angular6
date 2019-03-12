@@ -1,0 +1,30 @@
+.create_Book_Body{
+  padding-left: 350px;
+  padding-right: 400px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.form_heading{
+  padding-left: 470px;
+}
+
+.form_Field{
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.date{
+  width:102%;
+  padding-top: 5px;
+}
+
+.day{
+  width: 70%;
+}
+
+.btns{
+  margin-top: 10px;
+  margin-left: 300px;
+}
